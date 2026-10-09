@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Section 1.1 table — copy into Word</title>
+<style>
+  body { font-family: Calibri, Helvetica, Arial, sans-serif; font-size: 11pt;
+         margin: 24px; color: #111; }
+  p { color: #555; max-width: 46em; }
+  table { border-collapse: collapse; width: 100%; font-size: 11pt; }
+  th, td { border: 1px solid #000; padding: 6px 8px; text-align: left;
+           vertical-align: top; width: 50%; }
+  th { background: #1F4E79; color: #fff; font-weight: bold; }
+</style>
+</head>
+<body>
+<p>Select the table below, copy, then paste into Word (it becomes a native Word table).</p>
+<table>
+  <thead>
+    <tr>
+      <th>Already available — I will use it as-is</th>
+      <th>What I am building</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Player, ball and referee detection (YOLO with football-trained weights)</td>
+      <td>Finding the exact frame the ball is played, and measuring how much error that single choice introduces</td>
+    </tr>
+    <tr>
+      <td>Keeping player identities across frames (ByteTrack)</td>
+      <td>A Law 11 rules engine: second-last defender including the keeper, the level-with-the-ball exception, and an offside line set by the frontmost body part that can <em>legally</em> play the ball rather than the bottom of a bounding box</td>
+    </tr>
+    <tr>
+      <td>Assigning players to teams from kit colour</td>
+      <td>Listing <strong>every</strong> attacker in an offside position at the kick, instead of checking one nominated player</td>
+    </tr>
+    <tr>
+      <td>Pitch-marking detection and the transform to a top-down view (Roboflow <code>sports</code>)</td>
+      <td>An error model — how far out those off-the-shelf positions actually are, and how that changes with camera angle, crowding and occlusion</td>
+    </tr>
+    <tr>
+      <td>Pose keypoints (YOLO-pose)</td>
+      <td>Turning that error into a stated margin with an error bar, and a “too close to call” verdict when the margin falls inside it</td>
+    </tr>
+    <tr>
+      <td>Pretrained action-spotting baselines (SoccerNet); fetching a short window from a YouTube URL (<code>yt-dlp</code>)</td>
+      <td>The web application: paste a YouTube link (or upload a file), get the analysis back, compare two clips</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Testing against published independent reviews of real decisions, rather than against labels produced by the same officials whose misses I am looking for</td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>

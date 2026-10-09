@@ -1,0 +1,394 @@
+Summary,Issue Type,Description,Epic Name,Epic Link,Sprint,Priority,Labels,Story Points,Original Estimate
+P0 Setup,Epic,"Applications in, repo and CI running, off-the-shelf detection stack working on one clip.",P0 Setup,,,High,epic,,
+P1 Baseline and error model,Epic,"Measured accuracy of off-the-shelf positions, and an error model the rules engine can call.",P1 Baseline and error model,,,High,epic,,
+P2 Rules and uncertainty,Epic,"Kick-frame detection, Law 11 engine listing every candidate, margins with error bars.",P2 Rules and uncertainty,,,High,epic,,
+P3 Involvement,Epic,What each offside-position attacker did after the kick. Stretch if the basic path is behind.,P3 Involvement,,,High,epic,,
+P4 Web application,Epic,"YouTube link or file in, analysis out. Comparison view and AWS are stretch inside this epic.",P4 Web application,,,High,epic,,
+P5 Evaluation and dissertation,Epic,"Independent test cases, results, dissertation, demo.",P5 Evaluation and dissertation,,,High,epic,,
+Supervisor demo: off-the-shelf stack on one clip,Story,"Due week of 13 Oct. Do not write any original code. Clone the Roboflow sports soccer example, run it on one football clip, and show player boxes plus a top-down radar. Open with: this is existing tooling I am using as-is; my project starts after this. Two minutes of video is enough. Log the commands.
+
+Acceptance criteria:
+- Roboflow soccer example (or equivalent YOLO+radar) runs on one clip.
+- Output video or live window shown to supervisor.
+- Spoken line: this is not my contribution; it is the input my project will use.
+- Commands in the logbook. No original pipeline code.
+
+Epic: P0 Setup
+Sprint: S1 Setup (12 Oct – 25 Oct)
+Estimate: 6h (1 story point = 1 hour)",,P0 Setup,S1 Setup (12 Oct – 25 Oct),Highest,must-have off-the-shelf,6,6h
+Apply for SoccerNet data access,Story,"Apply in week one. Hugging Face NDA via soccer-net.org/data. If refused, write the fallback (open datasets + own footage) into the logbook the same week. Can slip a day if the supervisor demo is not yet running.
+
+Acceptance criteria:
+- Application submitted (or documented refusal) in the logbook.
+
+Epic: P0 Setup
+Sprint: S1 Setup (12 Oct – 25 Oct)
+Estimate: 3h (1 story point = 1 hour)",,P0 Setup,S1 Setup (12 Oct – 25 Oct),High,must-have,3,3h
+Submit ethics application,Story,"Cover the observer study and recording own footage on a local pitch. Apply early even if the study is stretch — ethics is the long pole. After the demo, not instead of it.
+
+Acceptance criteria:
+- Form submitted; copy in the repo or OneNote.
+
+Epic: P0 Setup
+Sprint: S1 Setup (12 Oct – 25 Oct)
+Estimate: 4h (1 story point = 1 hour)",,P0 Setup,S1 Setup (12 Oct – 25 Oct),High,must-have,4,4h
+"Create GitHub repo, branch protection and CI skeleton",Story,"Private or public repo, main protected, GitHub Actions running lint on an empty Python package. GitHub Projects board with these sprints mirrored as columns if Jira is delayed.
+
+Acceptance criteria:
+- Empty Python package lints green on push to main.
+
+Epic: P0 Setup
+Sprint: S1 Setup (12 Oct – 25 Oct)
+Estimate: 3h (1 story point = 1 hour)",,P0 Setup,S1 Setup (12 Oct – 25 Oct),High,must-have,3,3h
+"Detect players, keepers, referees and ball with football YOLO weights",Story,"Ultralytics + Roboflow football-players-detection weights. One clip, boxes on screen. Do not train a new detector.
+
+Acceptance criteria:
+- One clip with labelled boxes; no training run.
+
+Epic: P0 Setup
+Sprint: S2 Perception stack (26 Oct – 8 Nov)
+Estimate: 4h (1 story point = 1 hour)",,P0 Setup,S2 Perception stack (26 Oct – 8 Nov),High,must-have off-the-shelf,4,4h
+Keep player identities across frames with ByteTrack,Story,"model.track(..., tracker='bytetrack.yaml') or the sports example tracker. Same person keeps an ID through the clip.
+
+Acceptance criteria:
+- IDs stable through the clip except on full occlusions.
+
+Epic: P0 Setup
+Sprint: S2 Perception stack (26 Oct – 8 Nov)
+Estimate: 3h (1 story point = 1 hour)",,P0 Setup,S2 Perception stack (26 Oct – 8 Nov),High,must-have off-the-shelf,3,3h
+Map the camera view to a top-down pitch,Story,"Roboflow sports pitch keypoints + ViewTransformer. Player positions in metres on a 105x68 pitch, not pixels.
+
+Acceptance criteria:
+- Player coordinates in metres on a standard pitch.
+
+Epic: P0 Setup
+Sprint: S2 Perception stack (26 Oct – 8 Nov)
+Estimate: 4h (1 story point = 1 hour)",,P0 Setup,S2 Perception stack (26 Oct – 8 Nov),High,must-have off-the-shelf,4,4h
+Split teams by kit colour and export tracked positions as JSON,Story,"Done when one clip produces a JSON file of frame, track id, team, pitch x, pitch y. That JSON is the input to everything you write.
+
+Acceptance criteria:
+- JSON schema documented; one clip exported.
+
+Epic: P0 Setup
+Sprint: S2 Perception stack (26 Oct – 8 Nov)
+Estimate: 3h (1 story point = 1 hour)",,P0 Setup,S2 Perception stack (26 Oct – 8 Nov),High,must-have,3,3h
+Obtain SoccerNet tracking/GSR data or lock in a fallback,Story,"Download Game State Reconstruction or tracking splits. If access is still pending, freeze the fallback dataset and do not wait.
+
+Acceptance criteria:
+- Data on disk, or fallback named and justified.
+
+Epic: P1 Baseline and error model
+Sprint: S3 Measure accuracy (9 Nov – 22 Nov)
+Estimate: 4h (1 story point = 1 hour)",,P1 Baseline and error model,S3 Measure accuracy (9 Nov – 22 Nov),Highest,must-have,4,4h
+Run the off-the-shelf pipeline on labelled clips,Story,"Batch the P0 stack over the labelled set. Save predicted pitch-space coordinates per player per frame.
+
+Acceptance criteria:
+- Predictions saved for the whole labelled split.
+
+Epic: P1 Baseline and error model
+Sprint: S3 Measure accuracy (9 Nov – 22 Nov)
+Estimate: 6h (1 story point = 1 hour)",,P1 Baseline and error model,S3 Measure accuracy (9 Nov – 22 Nov),High,must-have,6,6h
+Compare predicted positions to ground truth in metres,Story,"One number: mean (and spread of) position error in metres. This is basic goal B1. Plot error histogram.
+
+Acceptance criteria:
+- Mean error and histogram in the logbook.
+
+Epic: P1 Baseline and error model
+Sprint: S3 Measure accuracy (9 Nov – 22 Nov)
+Estimate: 6h (1 story point = 1 hour)",,P1 Baseline and error model,S3 Measure accuracy (9 Nov – 22 Nov),High,must-have,6,6h
+Measure how position error changes with camera angle,Story,"Stratify B1 by camera angle / zoom. Tight sideline vs flatter broadcast. Table, not just a sentence.
+
+Acceptance criteria:
+- Table of error by angle/zoom bin.
+
+Epic: P1 Baseline and error model
+Sprint: S4 Error factors (23 Nov – 6 Dec)
+Estimate: 8h (1 story point = 1 hour)",,P1 Baseline and error model,S4 Error factors (23 Nov – 6 Dec),High,must-have,8,8h
+Measure how position error changes with crowding and occlusion,Story,"Stratify B1 by how packed the box is and whether the relevant player is occluded.
+
+Acceptance criteria:
+- Table of error by crowding/occlusion bin.
+
+Epic: P1 Baseline and error model
+Sprint: S4 Error factors (23 Nov – 6 Dec)
+Estimate: 6h (1 story point = 1 hour)",,P1 Baseline and error model,S4 Error factors (23 Nov – 6 Dec),High,must-have,6,6h
+Write up the measured accuracy figure,Story,"Short note a supervisor can read: method, overall metres, the two stratifications, limits. This is B1 on paper.
+
+Acceptance criteria:
+- Note sent to supervisor.
+
+Epic: P1 Baseline and error model
+Sprint: S4 Error factors (23 Nov – 6 Dec)
+Estimate: 4h (1 story point = 1 hour)",,P1 Baseline and error model,S4 Error factors (23 Nov – 6 Dec),High,must-have,4,4h
+Fit the error model,Story,"Turn the stratifications into a model: given camera/crowd/occlusion features, predicted position sigma in metres. Basic goal B2.
+
+Acceptance criteria:
+- Model predicts sigma; residuals checked.
+
+Epic: P1 Baseline and error model
+Sprint: S5 Error model (7 Dec – 20 Dec)
+Estimate: 8h (1 story point = 1 hour)",,P1 Baseline and error model,S5 Error model (7 Dec – 20 Dec),High,must-have,8,8h
+Expose the error model as a callable function,Story,"Pure Python, no YOLO import. Input: clip features and a player. Output: sigma in metres. Unit-tested on fixtures.
+
+Acceptance criteria:
+- pytest covers at least four fixtures.
+
+Epic: P1 Baseline and error model
+Sprint: S5 Error model (7 Dec – 20 Dec)
+Estimate: 4h (1 story point = 1 hour)",,P1 Baseline and error model,S5 Error model (7 Dec – 20 Dec),High,must-have,4,4h
+P1 supervisor report,Story,"Two to three pages: what you measured, the model, what you will not claim. Teaching ends 18 Dec — send before you leave.
+
+Acceptance criteria:
+- PDF or Word note in the repo.
+
+Epic: P1 Baseline and error model
+Sprint: S5 Error model (7 Dec – 20 Dec)
+Estimate: 4h (1 story point = 1 hour)",,P1 Baseline and error model,S5 Error model (7 Dec – 20 Dec),Medium,must-have,4,4h
+Encode Law 11 as pure Python,Story,"Exam-week work, no GPU. Second-last defender including keeper, level-with-the-ball exception. No OpenCV/YOLO imports in this package.
+
+Acceptance criteria:
+- Package imports without ultralytics or cv2.
+
+Epic: P2 Rules and uncertainty
+Sprint: S6 Law 11 (4 Jan – 17 Jan)
+Estimate: 5h (1 story point = 1 hour)",,P2 Rules and uncertainty,S6 Law 11 (4 Jan – 17 Jan),High,must-have,5,5h
+Unit-test Law 11 on synthetic positions,Story,"Fixture files of attacker/defender coordinates with expected onside/offside. Include a keeper-as-second-last case.
+
+Acceptance criteria:
+- Fixtures include keeper-as-second-last.
+
+Epic: P2 Rules and uncertainty
+Sprint: S6 Law 11 (4 Jan – 17 Jan)
+Estimate: 3h (1 story point = 1 hour)",,P2 Rules and uncertainty,S6 Law 11 (4 Jan – 17 Jan),High,must-have,3,3h
+Detect the frame the ball is kicked,Story,"Heuristic from ball trajectory / contact. Output a frame index. Basic goal B3. Do not pretend this is centimetre-accurate.
+
+Acceptance criteria:
+- Frame index returned for a clip.
+
+Epic: P2 Rules and uncertainty
+Sprint: S7 Kick-frame (18 Jan – 31 Jan)
+Estimate: 10h (1 story point = 1 hour)",,P2 Rules and uncertainty,S7 Kick-frame (18 Jan – 31 Jan),High,must-have,10,10h
+Evaluate kick-frame error against manual labels,Story,"Label ~20 clips by hand. Report mean and worst frame error. 25 fps means 40 ms a frame.
+
+Acceptance criteria:
+- Mean/worst frame error reported on ~20 clips.
+
+Epic: P2 Rules and uncertainty
+Sprint: S7 Kick-frame (18 Jan – 31 Jan)
+Estimate: 6h (1 story point = 1 hour)",,P2 Rules and uncertainty,S7 Kick-frame (18 Jan – 31 Jan),High,must-have,6,6h
+Measure how shifting the kick frame by 1–2 frames changes the margin,Story,"This number is the reason the comparison view exists. Record it. You will show it in the demo.
+
+Acceptance criteria:
+- Table of margin vs frame offset.
+
+Epic: P2 Rules and uncertainty
+Sprint: S7 Kick-frame (18 Jan – 31 Jan)
+Estimate: 4h (1 story point = 1 hour)",,P2 Rules and uncertainty,S7 Kick-frame (18 Jan – 31 Jan),High,must-have,4,4h
+Set the offside line from the frontmost legally playable body part,Story,"Use YOLO-pose keypoints. Not the bottom of the bounding box. Document which keypoints count under Law 11.
+
+Acceptance criteria:
+- Line uses a pose keypoint, not box bottom.
+
+Epic: P2 Rules and uncertainty
+Sprint: S8 Enumeration (1 Feb – 14 Feb)
+Estimate: 8h (1 story point = 1 hour)",,P2 Rules and uncertainty,S8 Enumeration (1 Feb – 14 Feb),High,must-have,8,8h
+List every attacker beyond the offside line at the kick,Story,"The judged contribution. Not the scorer — everyone. Basic goal B4. Derby motivating case: Fernández must appear even if Haaland does not.
+
+Acceptance criteria:
+- Multi-attacker fixture passes; scorer-only would fail it.
+
+Epic: P2 Rules and uncertainty
+Sprint: S8 Enumeration (1 Feb – 14 Feb)
+Estimate: 6h (1 story point = 1 hour)",,P2 Rules and uncertainty,S8 Enumeration (1 Feb – 14 Feb),Highest,must-have,6,6h
+Integration tests for the rules engine on real clips,Story,"Synthetic fixtures plus at least five real clips with hand labels. pytest in CI.
+
+Acceptance criteria:
+- CI runs pytest including at least five real clips.
+
+Epic: P2 Rules and uncertainty
+Sprint: S8 Enumeration (1 Feb – 14 Feb)
+Estimate: 8h (1 story point = 1 hour)",,P2 Rules and uncertainty,S8 Enumeration (1 Feb – 14 Feb),High,must-have,8,8h
+Attach an error bar to each offside margin,Story,"Call the P1 error model. Each candidate gets margin ± sigma. Basic goal B5.
+
+Acceptance criteria:
+- JSON includes margin and sigma per candidate.
+
+Epic: P2 Rules and uncertainty
+Sprint: S9 Uncertainty (15 Feb – 28 Feb)
+Estimate: 8h (1 story point = 1 hour)",,P2 Rules and uncertainty,S9 Uncertainty (15 Feb – 28 Feb),High,must-have,8,8h
+Return too-close-to-call when the margin falls inside the error bar,Story,"Three-way verdict: onside, offside, too close to call. No guessing inside the error bar.
+
+Acceptance criteria:
+- Three-way verdict in the JSON.
+
+Epic: P2 Rules and uncertainty
+Sprint: S9 Uncertainty (15 Feb – 28 Feb)
+Estimate: 4h (1 story point = 1 hour)",,P2 Rules and uncertainty,S9 Uncertainty (15 Feb – 28 Feb),High,must-have,4,4h
+"CLI: clip in, JSON out",Story,"One command: video path → kick frame, candidates, margins, verdicts. The website will wrap this. Done = B3+B4+B5 without a UI.
+
+Acceptance criteria:
+- One command documented in the README.
+
+Epic: P2 Rules and uncertainty
+Sprint: S9 Uncertainty (15 Feb – 28 Feb)
+Estimate: 8h (1 story point = 1 hour)",,P2 Rules and uncertainty,S9 Uncertainty (15 Feb – 28 Feb),High,must-have,8,8h
+Track each offside candidate for about two seconds after the kick,Story,"Reuse ByteTrack. Per candidate, a short trajectory after the kick frame.
+
+Acceptance criteria:
+- Trajectory stored per candidate.
+
+Epic: P3 Involvement
+Sprint: S10 App + involvement (1 Mar – 14 Mar)
+Estimate: 8h (1 story point = 1 hour)",,P3 Involvement,S10 App + involvement (1 Mar – 14 Mar),Medium,stretch,8,8h
+Extract movement features for each candidate,Story,"Speed, direction, distance to ball and to the goalkeeper. Enough to describe what they did.
+
+Acceptance criteria:
+- Features in the JSON.
+
+Epic: P3 Involvement
+Sprint: S10 App + involvement (1 Mar – 14 Mar)
+Estimate: 8h (1 story point = 1 hour)",,P3 Involvement,S10 App + involvement (1 Mar – 14 Mar),Medium,stretch,8,8h
+React app shell with Vite and Tailwind,Story,"Empty site: paste-URL form stub, results route stub, comparison route stub. No backend yet.
+
+Acceptance criteria:
+- Three routes render without a backend.
+
+Epic: P4 Web application
+Sprint: S10 App + involvement (1 Mar – 14 Mar)
+Estimate: 6h (1 story point = 1 hour)",,P4 Web application,S10 App + involvement (1 Mar – 14 Mar),High,must-have,6,6h
+Write a short involvement description per candidate,Story,"Plain sentence from the features, e.g. 'dived at the near post, did not touch the ball'.
+
+Acceptance criteria:
+- Description string in the JSON.
+
+Epic: P3 Involvement
+Sprint: S11 YouTube ingest (15 Mar – 21 Mar)
+Estimate: 7h (1 story point = 1 hour)",,P3 Involvement,S11 YouTube ingest (15 Mar – 21 Mar),Medium,stretch,7,7h
+YouTube URL plus timestamp ingest,Story,"Paste a URL and a rough timestamp. yt-dlp + ffmpeg pull only those seconds. Delete after analysis. Basic goal B6 input path.
+
+Acceptance criteria:
+- Short window downloaded, analysed, deleted.
+
+Epic: P4 Web application
+Sprint: S11 YouTube ingest (15 Mar – 21 Mar)
+Estimate: 8h (1 story point = 1 hour)",,P4 Web application,S11 YouTube ingest (15 Mar – 21 Mar),Highest,must-have,8,8h
+Tell a passive offside player from one going for the ball,Story,"Stretch S3. Only if P4 results page is already working. Rule or simple classifier on the features — not a new network if you can avoid it.
+
+Acceptance criteria:
+- Flag on each candidate, or ticket dropped with a logbook note.
+
+Epic: P3 Involvement
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 8h (1 story point = 1 hour)",,P3 Involvement,S12 Results + eval data (5 Apr – 18 Apr),Low,stretch,8,8h
+Attach involvement notes to the JSON output,Story,"CLI JSON includes the description (and the passive/active flag if that ticket landed).
+
+Acceptance criteria:
+- CLI JSON includes involvement fields.
+
+Epic: P3 Involvement
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 4h (1 story point = 1 hour)",,P3 Involvement,S12 Results + eval data (5 Apr – 18 Apr),Medium,stretch,4,4h
+File upload fallback,Story,"Same analysis path as YouTube. Needed for SoccerNet clips and for when a link fails.
+
+Acceptance criteria:
+- Uploaded file produces the same JSON shape as YouTube.
+
+Epic: P4 Web application
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 4h (1 story point = 1 hour)",,P4 Web application,S12 Results + eval data (5 Apr – 18 Apr),High,must-have,4,4h
+"Results page: kick frame, player list, margins, verdict",Story,"This is the judged artefact. One incident on screen. Basic goal B6.
+
+Acceptance criteria:
+- One incident visible end to end from an upload or link.
+
+Epic: P4 Web application
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 8h (1 story point = 1 hour)",,P4 Web application,S12 Results + eval data (5 Apr – 18 Apr),Highest,must-have,8,8h
+Assemble the KMI Panel and Mic'd Up test set,Story,"Independent labels. Do not use SoccerNet Offside labels as missed-offside truth. Include the 2026/27 derby as a worked example.
+
+Acceptance criteria:
+- Spreadsheet of incidents with independent labels and clip sources.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 6h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S12 Results + eval data (5 Apr – 18 Apr),High,must-have,6,6h
+Record own footage on a local pitch with measured positions,Story,"Action camera or phone, tape measure, a few staged offside geometries. Cheapest accurate ground truth.
+
+Acceptance criteria:
+- At least three staged geometries with taped distances.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 4h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S12 Results + eval data (5 Apr – 18 Apr),Medium,must-have,4,4h
+Run the observer study,Story,"Stretch S6. Only if ethics is approved. Compare what people notice in a clip against what the system flags. Drop this first if April is slipping.
+
+Acceptance criteria:
+- Results table, or ticket cancelled if ethics/time missing.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S12 Results + eval data (5 Apr – 18 Apr)
+Estimate: 6h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S12 Results + eval data (5 Apr – 18 Apr),Low,stretch,6,6h
+Wire the CLI pipeline to a backend job,Story,"Form submit → job → JSON → results page. Can be local first; AWS ticket is separate.
+
+Acceptance criteria:
+- UI submit produces a results page without hand-running CLI.
+
+Epic: P4 Web application
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 8h (1 story point = 1 hour)",,P4 Web application,S13 Deploy + write-up (19 Apr – 2 May),High,must-have,8,8h
+Comparison view of two analyses side by side,Story,"Stretch S1. Same clip, kick frame shifted by one or two frames, is the headline demo.
+
+Acceptance criteria:
+- Two kick frames, two verdicts, same clip.
+
+Epic: P4 Web application
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 8h (1 story point = 1 hour)",,P4 Web application,S13 Deploy + write-up (19 Apr – 2 May),Medium,stretch,8,8h
+"Deploy on AWS Lambda, API Gateway, DynamoDB and S3",Story,"Stretch S2. Serverless so it stays in student credits. GPU stays on Kaggle/Colab.
+
+Acceptance criteria:
+- Public URL, or ticket dropped with local-only demo noted.
+
+Epic: P4 Web application
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 10h (1 story point = 1 hour)",,P4 Web application,S13 Deploy + write-up (19 Apr – 2 May),Medium,stretch,10,10h
+CI/CD to deployment and measure delivery delay,Story,"Push to main deploys. Record time from submit to result on screen.
+
+Acceptance criteria:
+- Delay figure in the dissertation, or N/A if AWS dropped.
+
+Epic: P4 Web application
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 4h (1 story point = 1 hour)",,P4 Web application,S13 Deploy + write-up (19 Apr – 2 May),Medium,stretch,4,4h
+Authentication and a short security note,Story,"Stretch S4. Cognito or similar if AWS landed; otherwise a written review of what you would lock down. Drop if behind.
+
+Acceptance criteria:
+- Page of risks and controls, even if auth is not built.
+
+Epic: P4 Web application
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 4h (1 story point = 1 hour)",,P4 Web application,S13 Deploy + write-up (19 Apr – 2 May),Low,stretch,4,4h
+Evaluation tables for the dissertation,Story,"SoccerNet position error, kick-frame error, rules-engine cases, KMI/Mic'd Up incidents. Figures you can paste into Word.
+
+Acceptance criteria:
+- Figures ready to paste.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 8h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S13 Deploy + write-up (19 Apr – 2 May),Highest,must-have,8,8h
+Compile the dissertation,Story,"Assemble chapters from the logbook and the P1/P2 write-ups. You should have been writing as you went — this is compile, not start.
+
+Acceptance criteria:
+- Complete draft.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 4h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S13 Deploy + write-up (19 Apr – 2 May),Highest,must-have,4,4h
+Rehearse the demo,Story,"YouTube paste → player list. Comparison view if it exists. Derby clip as the story. Time it.
+
+Acceptance criteria:
+- Timed run recorded in the logbook.
+
+Epic: P5 Evaluation and dissertation
+Sprint: S13 Deploy + write-up (19 Apr – 2 May)
+Estimate: 2h (1 story point = 1 hour)",,P5 Evaluation and dissertation,S13 Deploy + write-up (19 Apr – 2 May),High,must-have,2,2h

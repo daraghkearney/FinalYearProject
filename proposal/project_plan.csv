@@ -1,0 +1,8 @@
+Phase,Period,Key tasks,Deliverable,Hours
+P0 Setup,Oct 2026,"Apply for SoccerNet data access and ethics approval; set up repository, CI and development environment; assemble the existing YOLO, ByteTrack and Roboflow tools and get them running on one clip","Existing tools working end to end, applications submitted",30
+P1 Measuring the baseline,Oct - Dec 2026,"Measure how accurate the off-the-shelf player positions actually are against SoccerNet ground truth; test how accuracy degrades with camera angle, player crowding and occlusion; build the error model","A measured accuracy figure and an error model",50
+P2 Rules and uncertainty,Nov 2026 - Jan 2027,"Detect the frame the ball is kicked; build and unit-test the Law 11 rules engine, including the frontmost legally playable body part; propagate the error model into a margin with an error bar and a ""too close to call"" verdict","Rules engine listing every offside-position attacker with honest margins",70
+P3 Involvement,Jan - Mar 2027,"Track each offside player for about two seconds after the kick; extract movement features; describe what each one did",Involvement description for each candidate,35
+P4 Application,Jan - Mar 2027,"Build the web application: YouTube URL plus timestamp, file upload, and the comparison view; AWS backend (Lambda, API Gateway, DynamoDB, S3); CI/CD through to deployment; measure delivery delay","Working web application, deployed",60
+P5 Evaluation,Mar - Apr 2027,"Test against SoccerNet, published VAR reviews and my own footage; run the observer study; write the dissertation; prepare the demo","Dissertation, results and demonstration",30
+Total,,,,275
