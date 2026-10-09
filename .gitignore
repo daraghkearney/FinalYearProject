@@ -16,3 +16,6 @@ build/
 *.mov
 data/
 weights/
+demo/sports/
+demo/output/
+.venv/
