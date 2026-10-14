@@ -1,4 +1,3 @@
-# Original to this repo (FIN-6). Not cloned from Roboflow.
 name: CI
 
 on:
