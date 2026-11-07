@@ -8,6 +8,7 @@ dependencies = []
 
 [project.optional-dependencies]
 dev = ["ruff>=0.6"]
+youtube = ["yt-dlp>=2024.8", "imageio-ffmpeg"]
 
 [build-system]
 requires = ["setuptools>=68"]
