@@ -13,6 +13,6 @@ How far a player moves in one frame:
 
 Even if the boxes and the pitch map were perfect, a sprinter has already moved ~30 cm between two frames. If I am off by one frame on the kick, that is another 30 cm. Two frames is more like 60–80 cm. 3 cm is not on the table.
 
-Until I have a measured detector error, I will treat it as too close to call when the gap is under about 0.3 m (one sprint-frame). If I am not sure which frame the ball was played, I add another frame of slack (~0.6 m).
+On the United–Arsenal 8s clip I now have a detector figure as well. When YOLO and SoccerNet's Mask R-CNN both found the same person, their feet were about **0.3–0.4 m** apart on the pitch (median 0.34 m, mean 0.42 m). That is already the size of one sprint-frame. It is not human ground truth, and the pitch map is messy at the far end of a tight zoom, but it is no longer a guess.
 
-This is only the fps ceiling. Missed players, crowding, and a bad camera angle (Suncroft, tight TV zoom on SoccerNet) will make the real bar bigger, not smaller.
+I will treat it as too close to call when the gap is under about **0.4 m** (detector), or about **0.7 m** if I am also not sure which frame the ball was played (detector + one sprint-frame). Misses and extras are outside that number: a dropped far player is worse than 0.4 m.
